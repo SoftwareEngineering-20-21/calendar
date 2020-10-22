@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Calendar.plan_your_life.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Calendar.plan_your_life.Services.impl
 {
@@ -13,29 +14,39 @@ namespace Calendar.plan_your_life.Services.impl
             _context = context;
         }
 
-        public Event save(Event e)
+        public Event Save(Event e)
         {
-            throw new System.NotImplementedException();
+            Event eventToSave = _context.Events.Add(e);
+            _context.SaveChanges();
+            return eventToSave;
         }
 
-        public Event findById(long id)
+        public Event FindById(long id)
         {
             return _context.Events.First(p => p.Id == id);
         }
 
-        public IEnumerable<Event> findAll()
+        public IEnumerable<Event> FindAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Events.ToList();
         }
 
-        public void deleteById(long id)
+        public void DeleteById(long id)
         {
-            throw new System.NotImplementedException();
+            _context.Events.Remove(FindById(id));
+            _context.SaveChanges();
         }
 
-        public Event update(Event e)
+        public Event Update(Event e)
         {
-            throw new System.NotImplementedException();
+            Event eventToUpdate = FindById(e.Id);
+            eventToUpdate.Name = e.Name;
+            eventToUpdate.Description = e.Description;
+            eventToUpdate.StartAt = e.StartAt;
+            eventToUpdate.EntAt = e.EntAt;
+            _context.Entry(eventToUpdate).State = EntityState.Modified;
+            _context.SaveChanges();
+            return eventToUpdate;
         }
     }
 }

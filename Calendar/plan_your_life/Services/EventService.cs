@@ -6,14 +6,14 @@
 {
     public interface EventService
     {
-        Event save(Event e);
+        Event Save(Event e);
 
-        Event findById(long id);
+        Event FindById(long id);
 
-        IEnumerable<Event> findAll();
+        IEnumerable<Event> FindAll();
 
-        void deleteById(long id);
+        void DeleteById(long id);
 
-        Event update(Event e);
+        Event Update(Event e);
     }
 }
