@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\third_course\project\Calendar\Calendar" t="IncludeFlat">
+    <e p="C:\Users\user\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\user\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_Calendar.2027807173.00" t="ExcludeRecursive" />
+    <e p="C:\Users\user\AppData\Roaming\JetBrains\Rider2020.1\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\user\AppData\Roaming\JetBrains\Rider2020.1\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\user\AppData\Roaming\JetBrains\Rider2020.1\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\user\Desktop\University\Software_Engineering\cccc\Calendar" t="IncludeFlat">
       <e p="Calendar" t="IncludeRecursive">
         <e p="App.xaml" t="Include" />
         <e p="App.xaml.cs" t="Include" />
         <e p="AssemblyInfo.cs" t="Include" />
+        <e p="Authorize.xaml" t="Include" />
+        <e p="Authorize.xaml.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Calendar.csproj" t="IncludeRecursive" />
         <e p="MainWindow.xaml" t="Include" />
@@ -35,13 +42,11 @@
             <e p="UserService.cs" t="Include" />
           </e>
         </e>
+        <e p="Register.xaml" t="Include" />
+        <e p="Register.xaml.cs" t="Include" />
       </e>
       <e p="Calendar.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="C:\Users\Yura\.Rider2019.3\config\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\Yura\.Rider2019.3\config\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\Yura\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Yura\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Calendar.-1795199969.00" t="ExcludeRecursive" />
   </component>
 </project>

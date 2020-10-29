@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\third_course\\project\\Calendar\\Calendar\\Calendar\\Calendar.csproj",
+    "projectUniqueName": "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\Calendar.csproj",
     "projectName": "Calendar",
-    "projectPath": "C:\\third_course\\project\\Calendar\\Calendar\\Calendar\\Calendar.csproj",
-    "outputPath": "C:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\",
+    "projectPath": "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\Calendar.csproj",
+    "outputPath": "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -61,7 +61,7 @@
           "privateAssets": "none"
         }
       },
-      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
     }
   }
 }

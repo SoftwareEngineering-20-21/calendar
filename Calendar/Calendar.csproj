@@ -12,4 +12,22 @@
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Page Update="Register.xaml">
+        <Generator></Generator>
+      </Page>
+      <Page Update="Authorize.xaml">
+        <Generator></Generator>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Register.xaml.cs">
+        <DependentUpon>Register.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Authorize.xaml.cs">
+        <DependentUpon>Authorize.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

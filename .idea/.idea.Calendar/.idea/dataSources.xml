@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/calendar</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="plan_your_life@localhost" uuid="66a4f9d9-b3ab-475c-88e5-dff0f55afc9a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/plan_your_life</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -27,7 +27,9 @@ namespace Calendar
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            Register register = new Register();
+            register.Show();
+            this.Close();
         }
     }
 }
