@@ -1,0 +1,174 @@
+Index: Calendar/plan_your_life/Services/impl/UserServiceImpl.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Collections.Generic;\r\nusing System.Linq;\r\nusing Calendar.plan_your_life.Entities;\r\nusing Microsoft.EntityFrameworkCore;\r\n\r\nnamespace Calendar.plan_your_life.Services.impl\r\n{\r\n    public class UserServiceImpl:UserService\r\n    \r\n    {\r\n        private Context _context;\r\n\r\n        public UserServiceImpl(Context context)\r\n        {\r\n            _context = context;\r\n        }\r\n        public User Save(User user)\r\n        {\r\n            User userToSave = _context.Users.Add(user);\r\n            _context.SaveChanges();\r\n            return userToSave;\r\n        }\r\n\r\n        public User FindById(long id)\r\n        {\r\n            return _context.Users.First(p => p.Id == id);\r\n        }\r\n\r\n        public IEnumerable<User> FindAll()\r\n        {\r\n            return _context.Users.ToList();\r\n        }\r\n\r\n        public void DeleteById(long id)\r\n        {\r\n            _context.Users.Remove(FindById(id));\r\n            _context.SaveChanges();\r\n        }\r\n\r\n        public User Update(User user)\r\n        {\r\n            User userToUpdate = FindById(user.Id);\r\n            userToUpdate.Password = user.Password;\r\n            \r\n            _context.Entry(userToUpdate).State = EntityState.Modified;\r\n            _context.SaveChanges();\r\n            return userToUpdate;\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calendar/plan_your_life/Services/impl/UserServiceImpl.cs	(revision 6d1f7f48e285e49cc00237edf443d49ddd7964f5)
++++ Calendar/plan_your_life/Services/impl/UserServiceImpl.cs	(date 1604006116495)
+@@ -8,12 +8,9 @@
+     public class UserServiceImpl:UserService
+     
+     {
+-        private Context _context;
+-
+-        public UserServiceImpl(Context context)
+-        {
+-            _context = context;
+-        }
++        private Context _context = new Context();
++        public User currentUser;
++        
+         public User Save(User user)
+         {
+             User userToSave = _context.Users.Add(user);
+@@ -46,5 +43,16 @@
+             _context.SaveChanges();
+             return userToUpdate;
+         }
++
++        public void Authorize(string Email, string Password)
++        {
++            User user = _context.Users.First(u => u.Email == Email);
++            if (user.Password != Password)
++            {
++                
++            }
++
++            currentUser = user;
++        }
+     }
+ }
+\ No newline at end of file
+Index: Calendar/plan_your_life/Services/UserService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nusing System.Collections.Generic;\r\nusing Calendar.plan_your_life.Entities;\r\n\r\nnamespace  Calendar.plan_your_life.Services\r\n{\r\n    public interface UserService\r\n    {\r\n        User Save(User user);\r\n\r\n        User FindById(long id);\r\n\r\n        IEnumerable<User> FindAll();\r\n\r\n        void DeleteById(long id);\r\n\r\n        User Update(User user);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calendar/plan_your_life/Services/UserService.cs	(revision 6d1f7f48e285e49cc00237edf443d49ddd7964f5)
++++ Calendar/plan_your_life/Services/UserService.cs	(date 1604005230425)
+@@ -15,5 +15,7 @@
+         void DeleteById(long id);
+ 
+         User Update(User user);
++
++        void Authorize(string Email, string Password);
+     }
+ }
+\ No newline at end of file
+Index: Calendar/MainWindow.xaml.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\r\nusing System.Collections.Generic;\r\nusing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\nusing System.Windows;\r\nusing System.Windows.Controls;\r\nusing System.Windows.Data;\r\nusing System.Windows.Documents;\r\nusing System.Windows.Input;\r\nusing System.Windows.Media;\r\nusing System.Windows.Media.Imaging;\r\nusing System.Windows.Navigation;\r\nusing System.Windows.Shapes;\r\n\r\nnamespace Calendar\r\n{\r\n    /// <summary>\r\n    /// Interaction logic for MainWindow.xaml\r\n    /// </summary>\r\n    public partial class MainWindow : Window\r\n    {\r\n        public MainWindow()\r\n        {\r\n            InitializeComponent();\r\n        }\r\n\r\n        private void Button_Click(object sender, RoutedEventArgs e)\r\n        {\r\n            Register register = new Register();\r\n            register.Show();\r\n            this.Close();\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calendar/MainWindow.xaml.cs	(revision 6d1f7f48e285e49cc00237edf443d49ddd7964f5)
++++ Calendar/MainWindow.xaml.cs	(date 1604004348423)
+@@ -25,11 +25,18 @@
+             InitializeComponent();
+         }
+ 
+-        private void Button_Click(object sender, RoutedEventArgs e)
++        private void Register_Click(object sender, RoutedEventArgs e)
+         {
+             Register register = new Register();
+             register.Show();
+             this.Close();
+         }
++
++        private void Authorize_Click(object sender, RoutedEventArgs e)
++        {
++            Authorize authorize = new Authorize();
++            authorize.Show();
++            this.Close();
++        }
+     }
+ }
+\ No newline at end of file
+Index: Calendar/MainWindow.xaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><Window x:Class=\"Calendar.MainWindow\"\r\n        xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\r\n        xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\r\n        xmlns:d=\"http://schemas.microsoft.com/expression/blend/2008\"\r\n        xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\"\r\n        xmlns:local=\"clr-namespace:Calendar\"\r\n        mc:Ignorable=\"d\"\r\n        Title=\"MainWindow\" Height=\"450\" Width=\"800\">\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"0*\"/>\r\n            <RowDefinition/>\r\n            <RowDefinition Height=\"13*\"/>\r\n        </Grid.RowDefinitions>\r\n        <Button Content=\"Register\" HorizontalAlignment=\"Center\" Margin=\"0,103,0,0\" Grid.Row=\"2\" VerticalAlignment=\"Top\" Height=\"56\" Width=\"136\" Click=\"Button_Click\" FontSize=\"24\"/>\r\n        <Button Content=\"Authorize\" HorizontalAlignment=\"Center\" Margin=\"0,186,0,0\" Grid.Row=\"2\" VerticalAlignment=\"Top\" Height=\"62\" Width=\"136\" FontSize=\"24\"/>\r\n        <Label Content=\"Calendar\" HorizontalAlignment=\"Center\" Margin=\"0,10,0,0\" Grid.Row=\"2\" VerticalAlignment=\"Top\" FontSize=\"48\"/>\r\n    </Grid>\r\n</Window>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calendar/MainWindow.xaml	(revision 6d1f7f48e285e49cc00237edf443d49ddd7964f5)
++++ Calendar/MainWindow.xaml	(date 1604004348458)
+@@ -12,8 +12,8 @@
+             <RowDefinition/>
+             <RowDefinition Height="13*"/>
+         </Grid.RowDefinitions>
+-        <Button Content="Register" HorizontalAlignment="Center" Margin="0,103,0,0" Grid.Row="2" VerticalAlignment="Top" Height="56" Width="136" Click="Button_Click" FontSize="24"/>
+-        <Button Content="Authorize" HorizontalAlignment="Center" Margin="0,186,0,0" Grid.Row="2" VerticalAlignment="Top" Height="62" Width="136" FontSize="24"/>
++        <Button Content="Register" HorizontalAlignment="Center" Margin="0,103,0,0" Grid.Row="2" VerticalAlignment="Top" Height="56" Width="136" Click="Register_Click" FontSize="24"/>
++        <Button Content="Authorize" HorizontalAlignment="Center" Margin="0,186,0,0" Grid.Row="2" VerticalAlignment="Top" Height="62" Width="136" Click="Authorize_Click" FontSize="24"/>
+         <Label Content="Calendar" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="48"/>
+     </Grid>
+ </Window>
+Index: Calendar/obj/Debug/netcoreapp3.1/MainWindow.g.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#pragma checksum \"..\\..\\..\\MainWindow.xaml\" \"{ff1816ec-aa5e-4d10-87f7-6f4963833460}\" \"4230BFA0CC0B119D1B0B73B69D7365BC71EFAB8B\"\r\n//------------------------------------------------------------------------------\r\n// <auto-generated>\r\n//     This code was generated by a tool.\r\n//\r\n//     Changes to this file may cause incorrect behavior and will be lost if\r\n//     the code is regenerated.\r\n// </auto-generated>\r\n//------------------------------------------------------------------------------\r\n\r\nusing Calendar;\r\nusing System;\r\nusing System.Diagnostics;\r\nusing System.Windows;\r\nusing System.Windows.Automation;\r\nusing System.Windows.Controls;\r\nusing System.Windows.Controls.Primitives;\r\nusing System.Windows.Controls.Ribbon;\r\nusing System.Windows.Data;\r\nusing System.Windows.Documents;\r\nusing System.Windows.Ink;\r\nusing System.Windows.Input;\r\nusing System.Windows.Markup;\r\nusing System.Windows.Media;\r\nusing System.Windows.Media.Animation;\r\nusing System.Windows.Media.Effects;\r\nusing System.Windows.Media.Imaging;\r\nusing System.Windows.Media.Media3D;\r\nusing System.Windows.Media.TextFormatting;\r\nusing System.Windows.Navigation;\r\nusing System.Windows.Shapes;\r\nusing System.Windows.Shell;\r\n\r\n\r\nnamespace Calendar {\r\n    \r\n    \r\n    /// <summary>\r\n    /// MainWindow\r\n    /// </summary>\r\n    public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {\r\n        \r\n        private bool _contentLoaded;\r\n        \r\n        /// <summary>\r\n        /// InitializeComponent\r\n        /// </summary>\r\n        [System.Diagnostics.DebuggerNonUserCodeAttribute()]\r\n        [System.CodeDom.Compiler.GeneratedCodeAttribute(\"PresentationBuildTasks\", \"4.8.1.0\")]\r\n        public void InitializeComponent() {\r\n            if (_contentLoaded) {\r\n                return;\r\n            }\r\n            _contentLoaded = true;\r\n            System.Uri resourceLocater = new System.Uri(\"/Calendar;component/mainwindow.xaml\", System.UriKind.Relative);\r\n            \r\n            #line 1 \"..\\..\\..\\MainWindow.xaml\"\r\n            System.Windows.Application.LoadComponent(this, resourceLocater);\r\n            \r\n            #line default\r\n            #line hidden\r\n        }\r\n        \r\n        [System.Diagnostics.DebuggerNonUserCodeAttribute()]\r\n        [System.CodeDom.Compiler.GeneratedCodeAttribute(\"PresentationBuildTasks\", \"4.8.1.0\")]\r\n        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]\r\n        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"Microsoft.Design\", \"CA1033:InterfaceMethodsShouldBeCallableByChildTypes\")]\r\n        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"Microsoft.Maintainability\", \"CA1502:AvoidExcessiveComplexity\")]\r\n        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"Microsoft.Performance\", \"CA1800:DoNotCastUnnecessarily\")]\r\n        void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {\r\n            switch (connectionId)\r\n            {\r\n            case 1:\r\n            \r\n            #line 15 \"..\\..\\..\\MainWindow.xaml\"\r\n            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Button_Click);\r\n            \r\n            #line default\r\n            #line hidden\r\n            return;\r\n            }\r\n            this._contentLoaded = true;\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calendar/obj/Debug/netcoreapp3.1/MainWindow.g.cs	(revision 6d1f7f48e285e49cc00237edf443d49ddd7964f5)
++++ Calendar/obj/Debug/netcoreapp3.1/MainWindow.g.cs	(date 1604004350496)
+@@ -1,4 +1,4 @@
+-#pragma checksum "..\..\..\MainWindow.xaml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "4230BFA0CC0B119D1B0B73B69D7365BC71EFAB8B"
++#pragma checksum "..\..\..\MainWindow.xaml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "77E18F9509ADDF6258A2B2146D9543F99A41C318"
+ //------------------------------------------------------------------------------
+ // <auto-generated>
+ //     This code was generated by a tool.
+@@ -73,7 +73,15 @@
+             case 1:
+             
+             #line 15 "..\..\..\MainWindow.xaml"
+-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Button_Click);
++            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Register_Click);
++            
++            #line default
++            #line hidden
++            return;
++            case 2:
++            
++            #line 16 "..\..\..\MainWindow.xaml"
++            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Authorize_Click);
+             
+             #line default
+             #line hidden
+Index: Calendar/obj/Debug/netcoreapp3.1/Calendar.csproj.FileListAbsolute.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>C:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.exe\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.deps.json\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.runtimeconfig.json\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.runtimeconfig.dev.json\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.pdb\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\EntityFramework.SqlServer.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Bcl.AsyncInterfaces.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Bcl.HashCode.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.EntityFrameworkCore.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.EntityFrameworkCore.Abstractions.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.EntityFrameworkCore.Relational.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Caching.Abstractions.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Caching.Memory.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Configuration.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Configuration.Abstractions.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Configuration.Binder.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.DependencyInjection.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.DependencyInjection.Abstractions.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Logging.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Logging.Abstractions.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Options.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Primitives.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Npgsql.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Npgsql.EntityFrameworkCore.PostgreSQL.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\System.Collections.Immutable.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\System.Data.SqlClient.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\System.Diagnostics.DiagnosticSource.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win-arm64\\native\\sni.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win-x64\\native\\sni.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win-x86\\native\\sni.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\unix\\lib\\netcoreapp2.1\\System.Data.SqlClient.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win\\lib\\netcoreapp2.1\\System.Data.SqlClient.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.csprojAssemblyReference.cache\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\MainWindow.g.cs\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\App.g.cs\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar_MarkupCompile.cache\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar_MarkupCompile.lref\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\MainWindow.baml\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.g.resources\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.csproj.CoreCompileInputs.cache\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.AssemblyInfoInputs.cache\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.AssemblyInfo.cs\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.csproj.CopyComplete\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.dll\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.pdb\r\nC:\\third_course\\project\\Calendar\\Calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.genruntimeconfig.cache\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.exe\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.deps.json\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.runtimeconfig.json\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.runtimeconfig.dev.json\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Calendar.pdb\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\EntityFramework.SqlServer.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Bcl.AsyncInterfaces.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Bcl.HashCode.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.EntityFrameworkCore.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.EntityFrameworkCore.Abstractions.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.EntityFrameworkCore.Relational.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Caching.Abstractions.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Caching.Memory.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Configuration.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Configuration.Abstractions.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Configuration.Binder.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.DependencyInjection.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.DependencyInjection.Abstractions.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Logging.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Logging.Abstractions.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Options.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Microsoft.Extensions.Primitives.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Npgsql.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\Npgsql.EntityFrameworkCore.PostgreSQL.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\System.Collections.Immutable.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\System.Data.SqlClient.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\System.Diagnostics.DiagnosticSource.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win-arm64\\native\\sni.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win-x64\\native\\sni.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win-x86\\native\\sni.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\unix\\lib\\netcoreapp2.1\\System.Data.SqlClient.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\bin\\Debug\\netcoreapp3.1\\runtimes\\win\\lib\\netcoreapp2.1\\System.Data.SqlClient.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.csprojAssemblyReference.cache\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\MainWindow.g.cs\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\App.g.cs\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar_MarkupCompile.cache\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar_MarkupCompile.lref\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\MainWindow.baml\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.g.resources\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.AssemblyInfoInputs.cache\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.AssemblyInfo.cs\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.csproj.CopyComplete\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.dll\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Calendar.pdb\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Register.g.cs\r\nC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\Debug\\netcoreapp3.1\\Register.baml\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calendar/obj/Debug/netcoreapp3.1/Calendar.csproj.FileListAbsolute.txt	(revision 6d1f7f48e285e49cc00237edf443d49ddd7964f5)
++++ Calendar/obj/Debug/netcoreapp3.1/Calendar.csproj.FileListAbsolute.txt	(date 1604004351330)
+@@ -94,3 +94,5 @@
+ C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Calendar.pdb
+ C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Register.g.cs
+ C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Register.baml
++C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Authorize.g.cs
++C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Authorize.baml
+Index: Calendar/obj/Debug/netcoreapp3.1/Calendar_MarkupCompile.lref
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n\r\nFC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\MainWindow.xaml;;\r\nFC:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\Register.xaml;;\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calendar/obj/Debug/netcoreapp3.1/Calendar_MarkupCompile.lref	(revision 6d1f7f48e285e49cc00237edf443d49ddd7964f5)
++++ Calendar/obj/Debug/netcoreapp3.1/Calendar_MarkupCompile.lref	(date 1604004350516)
+@@ -1,5 +1,6 @@
+ 
+ 
++FC:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\Authorize.xaml;;
+ FC:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\MainWindow.xaml;;
+ FC:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\Register.xaml;;
+ 

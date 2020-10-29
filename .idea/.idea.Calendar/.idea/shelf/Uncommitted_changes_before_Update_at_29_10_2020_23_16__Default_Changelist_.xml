@@ -1,0 +1,39 @@
+<changelist name="Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]" date="1604006167808" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 29.10.2020 23:16 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar.g.resources" />
+    <option name="AFTER_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar.g.resources" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/Calendar.g.resources" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar.dll" />
+    <option name="AFTER_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/Calendar.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar_MarkupCompile.cache" />
+    <option name="AFTER_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar_MarkupCompile.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/Calendar_MarkupCompile.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Calendar/bin/Debug/netcoreapp3.1/Calendar.pdb" />
+    <option name="AFTER_PATH" value="Calendar/bin/Debug/netcoreapp3.1/Calendar.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/Calendar.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Calendar/obj/Debug/netcoreapp3.1/MainWindow.baml" />
+    <option name="AFTER_PATH" value="Calendar/obj/Debug/netcoreapp3.1/MainWindow.baml" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/MainWindow.baml" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Calendar/bin/Debug/netcoreapp3.1/Calendar.dll" />
+    <option name="AFTER_PATH" value="Calendar/bin/Debug/netcoreapp3.1/Calendar.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/Calendar1.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar.pdb" />
+    <option name="AFTER_PATH" value="Calendar/obj/Debug/netcoreapp3.1/Calendar.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Calendar/.idea/shelf/Uncommitted_changes_before_Update_at_29_10_2020_23_16_[Default_Changelist]/Calendar1.pdb" />
+  </binary>
+</changelist>

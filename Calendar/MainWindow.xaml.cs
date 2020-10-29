@@ -25,10 +25,17 @@ namespace Calendar
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Register_Click(object sender, RoutedEventArgs e)
         {
             Register register = new Register();
             register.Show();
+            this.Close();
+        }
+
+        private void Authorize_Click(object sender, RoutedEventArgs e)
+        {
+            Authorize authorize = new Authorize();
+            authorize.Show();
             this.Close();
         }
     }

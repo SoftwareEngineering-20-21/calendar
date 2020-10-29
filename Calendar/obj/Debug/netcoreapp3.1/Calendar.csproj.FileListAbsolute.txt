@@ -54,16 +54,11 @@ C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Calendar.pdb
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\EntityFramework.dll
-C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
-C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
@@ -96,3 +91,6 @@ C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj
 C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Register.baml
 C:\third_course\project\Calendar\Calendar\Calendar\obj\Debug\netcoreapp3.1\Register.g.cs
 C:\third_course\project\Calendar\Calendar\Calendar\obj\Debug\netcoreapp3.1\Register.baml
+C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Authorize.g.cs
+C:\Users\user\Desktop\University\Software_Engineering\cccc\calendar\Calendar\obj\Debug\netcoreapp3.1\Authorize.baml
