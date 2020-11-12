@@ -13,8 +13,10 @@ namespace Calendar.plan_your_life.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
+        public int UserId { get; set; }
+        public int EventId { get; set; }
+        public Status Status { get; set; }
         public User User { get; set; }
         public Event Event { get; set; }
-        public Status Status { get; set; }
     }
 }

@@ -10,9 +10,11 @@ namespace Calendar
 {
     public partial class Register : Window
     {
+        private UserService service;
         public Register()
         {
             InitializeComponent();
+            this.service = new UserServiceImpl();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
@@ -52,8 +54,8 @@ namespace Calendar
                 else
                 {
                     User user = new User {Email = email, Password = password, UserName = userName};
-                
-                    errormessage.Text = "You have Registered successfully.";
+                    this.service.Save(user);
+                    errormessage.Text = $"{user.UserName} have registered successfully.";
                 }
             }
         }

@@ -16,24 +16,24 @@ namespace Calendar.plan_your_life.Services.impl
 
         public Event Save(Event e)
         {
-            Event eventToSave = _context.Events.Add(e);
+            Event eventToSave = _context.Event.Add(e);
             _context.SaveChanges();
             return eventToSave;
         }
 
         public Event FindById(long id)
         {
-            return _context.Events.First(p => p.Id == id);
+            return _context.Event.First(p => p.Id == id);
         }
 
         public IEnumerable<Event> FindAll()
         {
-            return _context.Events.ToList();
+            return _context.Event.ToList();
         }
 
         public void DeleteById(long id)
         {
-            _context.Events.Remove(FindById(id));
+            _context.Event.Remove(FindById(id));
             _context.SaveChanges();
         }
 
@@ -43,7 +43,7 @@ namespace Calendar.plan_your_life.Services.impl
             eventToUpdate.Name = e.Name;
             eventToUpdate.Description = e.Description;
             eventToUpdate.StartAt = e.StartAt;
-            eventToUpdate.EntAt = e.EntAt;
+            eventToUpdate.EndAt = e.EndAt;
             _context.Entry(eventToUpdate).State = EntityState.Modified;
             _context.SaveChanges();
             return eventToUpdate;

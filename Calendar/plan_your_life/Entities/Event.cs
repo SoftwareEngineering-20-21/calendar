@@ -19,7 +19,7 @@ using System.ComponentModel.DataAnnotations.Schema;
         [Column(TypeName = "DATE")]
         public DateTime StartAt { get; set; }
         [Column(TypeName = "DATE")]
-        public DateTime EntAt { get; set; }
+        public DateTime EndAt { get; set; }
         public List<UserEvent> UserEvents { get; set; }
     }
 }

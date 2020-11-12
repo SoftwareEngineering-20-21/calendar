@@ -10,30 +10,30 @@ namespace Calendar.plan_your_life.Services.impl
     {
         private Context _context;
 
-        public UserServiceImpl(Context context)
+        public UserServiceImpl()
         {
-            _context = context;
+            _context = new Context();
         }
         public User Save(User user)
         {
-            User userToSave = _context.Users.Add(user);
+            User userToSave = _context.User.Add(user);
             _context.SaveChanges();
             return userToSave;
         }
 
         public User FindById(long id)
         {
-            return _context.Users.First(p => p.Id == id);
+            return _context.User.First(p => p.Id == id);
         }
 
         public IEnumerable<User> FindAll()
         {
-            return _context.Users.ToList();
+            return _context.User.ToList();
         }
 
         public void DeleteById(long id)
         {
-            _context.Users.Remove(FindById(id));
+            _context.User.Remove(FindById(id));
             _context.SaveChanges();
         }
 
