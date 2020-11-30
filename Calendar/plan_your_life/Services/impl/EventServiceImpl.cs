@@ -16,9 +16,10 @@ namespace Calendar.plan_your_life.Services.impl
 
         public Event Save(Event e)
         {
-            Event eventToSave = _context.Events.Add(e);
+            var eventToSave = _context.Events.Add(e);
             _context.SaveChanges();
-            return eventToSave;
+            
+            return eventToSave.Entity;
         }
 
         public Event FindById(long id)

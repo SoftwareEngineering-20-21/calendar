@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Register" Height="450" Width="800">
     <Grid>
-        <TextBlock Height="20" HorizontalAlignment="Center" Margin="67,0,0,0" x:Name ="errormessage" VerticalAlignment="Top" Width="247" />  
-        <Label Content="Register" HorizontalAlignment="Center" Height="76" Margin="0,16,0,0" VerticalAlignment="Top" Width="147" FontSize="36"/>
+        <TextBlock Height="20" HorizontalAlignment="Center" Margin="67,0,0,0" x:Name ="errormessage" VerticalAlignment="Top" Width="247" />
+        <Label Content="Register" HorizontalAlignment="Left" Height="76" Margin="253,10,0,0" VerticalAlignment="Top" Width="147" FontSize="36"/>
         <Label Content="UserName" HorizontalAlignment="Left" Margin="110,74,0,0" VerticalAlignment="Top"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="110,123,0,0" VerticalAlignment="Top"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="110,176,0,0" VerticalAlignment="Top"/>

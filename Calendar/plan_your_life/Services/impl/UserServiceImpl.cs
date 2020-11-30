@@ -16,9 +16,10 @@ namespace Calendar.plan_your_life.Services.impl
         }
         public User Save(User user)
         {
-            User userToSave = _context.Users.Add(user);
+            var entry = _context.Users.Add(user);
             _context.SaveChanges();
-            return userToSave;
+
+            return entry.Entity;
         }
 
         public User FindById(long id)
