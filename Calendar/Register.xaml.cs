@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Windows;
+using Calendar.plan_your_life;
 using Calendar.plan_your_life.Entities;
 using Calendar.plan_your_life.Services;
 using Calendar.plan_your_life.Services.impl;
@@ -10,11 +11,9 @@ namespace Calendar
 {
     public partial class Register : Window
     {
-        private UserService service;
         public Register()
         {
             InitializeComponent();
-            this.service = new UserServiceImpl();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
@@ -53,9 +52,16 @@ namespace Calendar
                 }
                 else
                 {
-                    User user = new User {Email = email, Password = password, UserName = userName};
-                    this.service.Save(user);
-                    errormessage.Text = $"{user.UserName} have registered successfully.";
+                    User user = new User { Email = email, Password = password, UserName = userName };
+
+                    var ctx = new Context();
+
+                    UserService service = new UserServiceImpl(ctx);
+
+                    service.Save(user);
+
+
+                    errormessage.Text = "You have Registered successfully.";
                 }
             }
         }

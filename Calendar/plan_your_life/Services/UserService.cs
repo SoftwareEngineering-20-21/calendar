@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Calendar.plan_your_life.Entities;
 
-namespace  Calendar.plan_your_life.Services
+namespace Calendar.plan_your_life.Services
 {
     public interface UserService
     {

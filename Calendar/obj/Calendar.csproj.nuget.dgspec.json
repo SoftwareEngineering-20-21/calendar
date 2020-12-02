@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\Calendar.csproj": {}
+    "C:\\Users\\Dell\\Source\\Repos\\SoftwareEngineering-20-21\\calendar\\Calendar\\Calendar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\Calendar.csproj": {
+    "C:\\Users\\Dell\\Source\\Repos\\SoftwareEngineering-20-21\\calendar\\Calendar\\Calendar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\Calendar.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Source\\Repos\\SoftwareEngineering-20-21\\calendar\\Calendar\\Calendar.csproj",
         "projectName": "Calendar",
-        "projectPath": "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\Calendar.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\University\\Software_Engineering\\cccc\\calendar\\Calendar\\obj\\",
+        "projectPath": "C:\\Users\\Dell\\Source\\Repos\\SoftwareEngineering-20-21\\calendar\\Calendar\\Calendar.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell\\Source\\Repos\\SoftwareEngineering-20-21\\calendar\\Calendar\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,17 +38,25 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.0-rc.2.20475.6, )"
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -72,7 +77,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

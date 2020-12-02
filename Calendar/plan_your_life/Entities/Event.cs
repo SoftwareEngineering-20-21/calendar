@@ -1,14 +1,14 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
- namespace Calendar.plan_your_life.Entities
+namespace Calendar.plan_your_life.Entities
 {
     public class Event
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key] 
+        [Key]
         public int Id { get; set; }
         [MaxLength(30)]
         [Column(TypeName = "VARCHAR")]
@@ -19,7 +19,7 @@ using System.ComponentModel.DataAnnotations.Schema;
         [Column(TypeName = "DATE")]
         public DateTime StartAt { get; set; }
         [Column(TypeName = "DATE")]
-        public DateTime EndAt { get; set; }
+        public DateTime EntAt { get; set; }
         public List<UserEvent> UserEvents { get; set; }
     }
 }
