@@ -5,35 +5,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Calendar.plan_your_life.Services.impl
 {
-    public class UserServiceImpl:UserService
-    
+    public class UserServiceImpl : UserService
+
     {
         private Context _context;
 
-        public UserServiceImpl()
+        public UserServiceImpl(Context context)
         {
-            _context = new Context();
+            _context = context;
         }
         public User Save(User user)
         {
-            User userToSave = _context.User.Add(user);
+            var entry = _context.Users.Add(user);
             _context.SaveChanges();
-            return userToSave;
+
+            return entry.Entity;
         }
 
         public User FindById(long id)
         {
-            return _context.User.First(p => p.Id == id);
+            return _context.Users.First(p => p.Id == id);
         }
 
         public IEnumerable<User> FindAll()
         {
-            return _context.User.ToList();
+            return _context.Users.ToList();
         }
 
         public void DeleteById(long id)
         {
-            _context.User.Remove(FindById(id));
+            _context.Users.Remove(FindById(id));
             _context.SaveChanges();
         }
 
@@ -41,7 +42,7 @@ namespace Calendar.plan_your_life.Services.impl
         {
             User userToUpdate = FindById(user.Id);
             userToUpdate.Password = user.Password;
-            
+
             _context.Entry(userToUpdate).State = EntityState.Modified;
             _context.SaveChanges();
             return userToUpdate;
