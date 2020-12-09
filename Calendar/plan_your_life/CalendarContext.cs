@@ -12,7 +12,7 @@ namespace Calendar.plan_your_life
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=calendar;Username=postgres;Password=13052001");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=calendar;Username=postgres;Password=admin");
         }
     }
 }
