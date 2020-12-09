@@ -7,16 +7,18 @@
         mc:Ignorable="d"
         Title="EventPage" Height="450" Width="800">
     <Grid>
-        <Label x:Name="User_name" Content="Name" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top"/>
-        <DataGrid IsReadOnly ="True" x:Name="grid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="324" Margin="99,49,0,0" VerticalAlignment="Top" Width="579">
+        <Label x:Name="User_name" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid IsReadOnly ="True" x:Name="grid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="324" Margin="10,0,0,0" VerticalAlignment="Center" Width="579">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Event" Width="150" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Description" Width="150" Binding="{Binding Description}" />
                 <DataGridTextColumn Header="Start " Width="150" Binding="{Binding StartAt}"/>
                 <DataGridTextColumn Header="End" Width="150" Binding="{Binding EntAt}"/>
             </DataGrid.Columns>
-           
+
         </DataGrid>
+        <Button x:Name="Add_new_event" Content="Add new event" HorizontalAlignment="Left" Margin="631,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.379,-0.048" Width="99" Height="33" Click="Add_new_event_Click"/>
+        <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="631,342,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.025,0.503" Width="99" Height="37" Click="Button_Click"/>
 
 
 
