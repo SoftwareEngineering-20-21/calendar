@@ -49,5 +49,11 @@ namespace Calendar.plan_your_life.Services.impl
             _context.SaveChanges();
             return eventToUpdate;
         }
+
+        public IEnumerable<Event> FindAllByUserId(long userId)
+        {
+           return _context.UserEvents
+                .Where(u => u.User.Id == userId).Select(g => g.Event).ToList();
+        }
     }
 }

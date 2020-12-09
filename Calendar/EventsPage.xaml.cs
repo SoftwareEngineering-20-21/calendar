@@ -57,7 +57,7 @@ namespace Calendar
         {
             AddNewEvent addNewEvent = new AddNewEvent(this.user);
             addNewEvent.Show();
-            this.Close();
+            this.Close()
         }
     }
 }
