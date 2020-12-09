@@ -15,5 +15,7 @@ namespace Calendar.plan_your_life.Services
         void DeleteById(long id);
 
         Event Update(Event e);
+
+        IEnumerable<Event> FindAllByUserId(long id);
     }
 }
