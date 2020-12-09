@@ -33,6 +33,9 @@ namespace Calendar
             {
                 string email = this.email.Text;
                 string password = this.password.Text;
+                EventPage eventPage = new EventPage(email);
+                eventPage.Show();
+                this.Close();
 
             }
         }
