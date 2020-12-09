@@ -53,6 +53,9 @@ namespace Calendar
                     Context con = new Context();
                     EventServiceImpl usev = new EventServiceImpl(con);
                     usev.Save(ev, this.user.Id);
+                    EventPage eventPage = new EventPage(this.user);
+                    eventPage.Show();
+                    this.Close();
                 }
                 catch (PostgresException pexp)
                 {
@@ -67,6 +70,13 @@ namespace Calendar
                     MessageBox.Show("Error has been occured\nMessage = " + exp.Message);
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            EventPage eventPage = new EventPage(this.user);
+            eventPage.Show();
+            this.Close();
         }
     }
 }

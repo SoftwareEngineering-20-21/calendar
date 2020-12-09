@@ -18,7 +18,7 @@
         <Label Content="StartAt" HorizontalAlignment="Left" Margin="249,251,0,0" VerticalAlignment="Top"/>
         <Label Content="EndAt" HorizontalAlignment="Left" Margin="249,314,0,0" VerticalAlignment="Top"/>
         <Label Name="Error" Content="" HorizontalAlignment="Left" Margin="249,108,0,0" VerticalAlignment="Top" Width="276"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="117,374,0,0" VerticalAlignment="Top" Height="31" Width="90" Click="Add_Click" FontSize="18"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="117,374,0,0" VerticalAlignment="Top" Height="31" Width="90" FontSize="18" Click="Button_Click"/>
 
     </Grid>
 </Window>
