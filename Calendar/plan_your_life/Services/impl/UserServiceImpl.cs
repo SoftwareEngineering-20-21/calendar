@@ -27,6 +27,11 @@ namespace Calendar.plan_your_life.Services.impl
             return _context.Users.First(p => p.Id == id);
         }
 
+        public User FindByEmail(string email)
+        {
+            return _context.Users.First(u => u.Email == email);
+        }
+
         public IEnumerable<User> FindAll()
         {
             return _context.Users.ToList();

@@ -10,6 +10,8 @@ namespace Calendar.plan_your_life.Services
 
         User FindById(long id);
 
+        User FindByEmail(string email);
+
         IEnumerable<User> FindAll();
 
         void DeleteById(long id);
