@@ -8,11 +8,11 @@
         Title="Authorize" Height="450" Width="800">
     <Grid>
         <TextBlock Height="20" HorizontalAlignment="Center" Margin="67,0,0,0" x:Name ="errormessage" VerticalAlignment="Top" Width="247" />
-        <Label Content="Authorize" HorizontalAlignment="Center" Height="76" Margin="0,16,0,0" VerticalAlignment="Top" Width="147" FontSize="36"/>
+        <Label Content="Authorize" HorizontalAlignment="Center" Height="76" Margin="0,16,0,0" VerticalAlignment="Top" Width="238" FontSize="36"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="110,123,0,0" VerticalAlignment="Top"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="110,176,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="email" HorizontalAlignment="Left" Margin="280,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="password" HorizontalAlignment="Left" Margin="280,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="email" HorizontalAlignment="Left" Margin="280,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="password" HorizontalAlignment="Left" Margin="280,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.504,0.419"/>
         <Button Content="Back" HorizontalAlignment="Left" Margin="37,34,0,0" VerticalAlignment="Top" Click="Back_Click" FontSize="18"/>
         <Button Content="Authorize" HorizontalAlignment="Left" Margin="295,281,0,0" VerticalAlignment="Top" Height="31" Width="90" Click="Authorize_Click" FontSize="18"/>
     </Grid>
