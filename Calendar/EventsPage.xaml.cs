@@ -53,11 +53,18 @@ namespace Calendar
 
         }
 
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+        }
+
         private void Add_new_event_Click(object sender, RoutedEventArgs e)
         {
             AddNewEvent addNewEvent = new AddNewEvent(this.user);
             addNewEvent.Show();
-            this.Close()
+            this.Close();
         }
     }
 }
