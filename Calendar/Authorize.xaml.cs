@@ -1,5 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows;
+using Calendar.plan_your_life.Services.impl;
+using Calendar.plan_your_life;
 
 namespace Calendar
 {
@@ -31,11 +33,20 @@ namespace Calendar
             }
             else
             {
-                string email = this.email.Text;
-                string password = this.password.Text;
-                EventPage eventPage = new EventPage(email);
-                eventPage.Show();
-                Close();
+                Context con = new Context();
+                var userService = new UserServiceImpl(con);
+                var user = userService.FindByEmail(this.email.Text);
+                if (user.Password == this.password.Text)
+                {
+                    EventPage eventPage = new EventPage(this.email.Text);
+                    eventPage.Show();
+                    this.Close();
+                }
+                else
+                {
+                    errormessage.Text = "Password dismatch!";
+                    password.Focus();
+                }
 
             }
         }
