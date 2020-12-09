@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -6,6 +8,7 @@ using Calendar.plan_your_life;
 using Calendar.plan_your_life.Entities;
 using Calendar.plan_your_life.Services;
 using Calendar.plan_your_life.Services.impl;
+using Npgsql;
 
 namespace Calendar
 {
@@ -52,16 +55,31 @@ namespace Calendar
                 }
                 else
                 {
-                    User user = new User { Email = email, Password = password, UserName = userName };
+                    try
+                    {
+                        User user = new User { Email = email, Password = password, UserName = userName };
 
-                    var ctx = new Context();
+                        var ctx = new Context();
 
-                    UserService service = new UserServiceImpl(ctx);
+                        UserService service = new UserServiceImpl(ctx);
 
-                    service.Save(user);
+                        service.Save(user);
 
 
-                    errormessage.Text = "You have Registered successfully.";
+                        errormessage.Text = "You have Registered successfully.";
+                    }
+                    catch (PostgresException pexp)
+                    {
+                        MessageBox.Show("Error has been occured\nMessage = " + pexp.Message);
+                    }
+                    catch (EntityException eexp)
+                    {
+                        MessageBox.Show("Error has been occured\nMessage = " + eexp.Message);
+                    }
+                    catch (Exception exp)
+                    {
+                        MessageBox.Show("Error has been occured\nMessage = " + exp.Message);
+                    }
                 }
             }
         }

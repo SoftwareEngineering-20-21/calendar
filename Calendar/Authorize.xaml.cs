@@ -2,6 +2,10 @@
 using System.Windows;
 using Calendar.plan_your_life.Services.impl;
 using Calendar.plan_your_life;
+using System;
+using System.IO;
+using Npgsql;
+using System.Data.Entity.Core;
 
 namespace Calendar
 {
@@ -33,21 +37,35 @@ namespace Calendar
             }
             else
             {
-                Context con = new Context();
-                var userService = new UserServiceImpl(con);
-                var user = userService.FindByEmail(this.email.Text);
-                if (user.Password == this.password.Text)
+                try
                 {
-                    EventPage eventPage = new EventPage(this.email.Text);
-                    eventPage.Show();
-                    this.Close();
+                    Context con = new Context();
+                    var userService = new UserServiceImpl(con);
+                    var user = userService.FindByEmail(this.email.Text);
+                    if (user.Password == this.password.Text)
+                    {
+                        EventPage eventPage = new EventPage(user);
+                        eventPage.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        errormessage.Text = "Password dismatch!";
+                        password.Focus();
+                    }
                 }
-                else
+                catch(PostgresException pexp)
                 {
-                    errormessage.Text = "Password dismatch!";
-                    password.Focus();
+                    MessageBox.Show("Error has been occured\nMessage = " + pexp.Message);
                 }
-
+                catch(EntityException eexp)
+                {
+                    MessageBox.Show("Error has been occured\nMessage = " + eexp.Message);
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show("Error has been occured\nMessage = " + exp.Message);
+                }
             }
         }
 

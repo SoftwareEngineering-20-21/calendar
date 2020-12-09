@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Calendar.plan_your_life;
 using Calendar.plan_your_life.Services.impl;
 using Calendar.plan_your_life.Entities;
+using System.Data.Entity.Core;
 
 namespace Calendar
 {
@@ -18,18 +19,26 @@ namespace Calendar
     public partial class EventPage : Window
     {
 
-        public EventPage(string email)
+        public EventPage(User user)
         {
-            InitializeComponent();
-            Context con = new Context();
-            var userService = new UserServiceImpl(con);
-            User_name.Content = userService.FindByEmail(email).UserName;
-            
-           
+            try
+            {
 
+                InitializeComponent();
+                User_name.Content = user.UserName;
+            }
+            catch (PostgresException pexp)
+            {
+                MessageBox.Show("Error has been occured\nMessage = " + pexp.Message);
+            }
+            catch (EntityException eexp)
+            {
+                MessageBox.Show("Error has been occured\nMessage = " + eexp.Message);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Error has been occured\nMessage = " + exp.Message);
+            }
         }
-     
-
-       
     }
 }
