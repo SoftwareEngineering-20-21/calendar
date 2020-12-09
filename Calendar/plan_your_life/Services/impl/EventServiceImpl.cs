@@ -52,8 +52,21 @@ namespace Calendar.plan_your_life.Services.impl
 
         public IEnumerable<Event> FindAllByUserId(long userId)
         {
-           return _context.UserEvents
-                .Where(u => u.User.Id == userId).Select(g => g.Event).ToList();
+            return _context.UserEvents
+                 .Where(u => u.User.Id == userId).Select(g => g.Event).ToList();
+        }
+
+        public void Save(Event e, long userId)
+        {
+            User user = _context.Users.First(p => p.Id == userId);
+
+            var userEvent = new UserEvent();
+            userEvent.Event = e;
+            userEvent.User = user;
+            _context.UserEvents.Add(userEvent);
+            _context.Events.Add(e);
+            _context.SaveChanges();
+
         }
     }
 }
