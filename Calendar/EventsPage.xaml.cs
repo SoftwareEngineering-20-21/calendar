@@ -21,9 +21,11 @@ namespace Calendar
     /// </summary>
     public partial class EventPage : Window
     {
+        User user;
 
         public EventPage(User user)
         {
+            this.user = user;
             try
             {
                 Context con = new Context();
@@ -49,6 +51,13 @@ namespace Calendar
                 MessageBox.Show("Error has been occured\nMessage = " + exp.Message);
             }
 
+        }
+
+        private void Add_new_event_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewEvent addNewEvent = new AddNewEvent(this.user);
+            addNewEvent.Show();
+            this.Close()
         }
     }
 }
