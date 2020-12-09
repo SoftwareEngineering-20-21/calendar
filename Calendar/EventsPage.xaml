@@ -1,0 +1,24 @@
+﻿<Window x:Class="Calendar.EventPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar"
+        mc:Ignorable="d"
+        Title="EventPage" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="User_name" Content="Name" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid IsReadOnly ="True" x:Name="grid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="324" Margin="99,49,0,0" VerticalAlignment="Top" Width="579">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Event" Width="150" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Description" Width="150" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Start " Width="150" Binding="{Binding StartAt}"/>
+                <DataGridTextColumn Header="End" Width="150" Binding="{Binding EntAt}"/>
+            </DataGrid.Columns>
+           
+        </DataGrid>
+
+
+
+    </Grid>
+</Window>
