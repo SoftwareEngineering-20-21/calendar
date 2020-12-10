@@ -32,7 +32,7 @@ namespace Calendar
                 EventService eventService = new EventServiceImpl(con);
                 InitializeComponent();
                 User_name.Content = user.UserName;
-                IEnumerable<Event> events = eventService.FindAllByUserId(user.Id);
+                events = eventService.FindAllByUserId(user.Id).ToList();
                 grid.ItemsSource = events;
 
 
@@ -65,6 +65,32 @@ namespace Calendar
             AddNewEvent addNewEvent = new AddNewEvent(this.user);
             addNewEvent.Show();
             this.Close();
+        }
+        
+        private void Row_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Ensure row was clicked and not empty space
+            // var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+            //                                     e.OriginalSource as DependencyObject) as DataGridRow;
+            // var dataGrid = sender as DataGrid;
+            // if (dataGrid != null)
+            // {
+            //  var index = dataGrid.SelectedIndex;
+           
+            if (grid.SelectedItem == null) return;
+            var selectedEvent = grid.SelectedItem as Event;
+            Edit_Delete edit_delete = new Edit_Delete(selectedEvent,this.user);
+                edit_delete.Show();
+                this.Close();
+           // }
+            //if (row == null) return;
+            // else 
+            // {
+            //     Edit_Delete edit_delete = new Edit_Delete(this.user);
+            //    edit_delete.Show();
+            //   this.Close();
+            //  }
+
         }
     }
 }
