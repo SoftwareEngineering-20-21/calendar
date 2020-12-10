@@ -69,28 +69,18 @@ namespace Calendar
         
         private void Row_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // Ensure row was clicked and not empty space
-            // var row = ItemsControl.ContainerFromElement((DataGrid)sender,
-            //                                     e.OriginalSource as DependencyObject) as DataGridRow;
-            // var dataGrid = sender as DataGrid;
-            // if (dataGrid != null)
-            // {
-            //  var index = dataGrid.SelectedIndex;
-           
-            if (grid.SelectedItem == null) return;
-            var selectedEvent = grid.SelectedItem as Event;
-            Edit_Delete edit_delete = new Edit_Delete(selectedEvent,this.user);
-                edit_delete.Show();
-                this.Close();
-           // }
-            //if (row == null) return;
-            // else 
-            // {
-            //     Edit_Delete edit_delete = new Edit_Delete(this.user);
-            //    edit_delete.Show();
-            //   this.Close();
-            //  }
-
+            if (sender != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                {
+                    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                    int index = dgr.GetIndex();
+                    Edit_Delete edit_delete = new Edit_Delete(this.events[index], this.user);
+                    edit_delete.Show();
+                    this.Close();
+                }
+            }
         }
     }
 }
