@@ -22,7 +22,7 @@ namespace Calendar
     public partial class EventPage : Window
     {
         User user;
-
+        List<Event> events;
         public EventPage(User user)
         {
             this.user = user;
