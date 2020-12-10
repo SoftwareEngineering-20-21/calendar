@@ -27,6 +27,7 @@ namespace Calendar
         User user;
         public Edit_Delete(Event events, User user)
         {
+            InitializeComponent();
             this.events = events;
             this.user = user;
             Name.Text = this.events.Name;
