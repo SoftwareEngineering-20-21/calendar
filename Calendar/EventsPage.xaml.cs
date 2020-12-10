@@ -11,6 +11,8 @@ using System.Data.Entity.Core;
 using Calendar.plan_your_life.Services;
 using System.Windows.Documents;
 using System.Collections.Generic;
+using System.Windows.Input;
+using System.Linq;
 
 namespace Calendar
 {
