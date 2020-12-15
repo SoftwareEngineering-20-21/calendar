@@ -34,7 +34,8 @@ namespace Calendar.plan_your_life.Services.impl
 
         public void DeleteById(long id)
         {
-            _context.Events.Remove(FindById(id));
+            Event eventt = FindById(id);
+            _context.Events.Remove(eventt);
             _context.SaveChanges();
         }
 

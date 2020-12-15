@@ -67,6 +67,9 @@ namespace Calendar
 
 
                         errormessage.Text = "You have Registered successfully.";
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        this.Close();
                     }
                     catch (PostgresException pexp)
                     {
