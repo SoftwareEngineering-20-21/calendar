@@ -41,15 +41,15 @@ namespace Calendar
             {
                 Error.Content = "Enter all fields!";
             }
-            else if (!Regex.IsMatch(startAt, @"\d{4}-\d{2}-\d{2}") || !Regex.IsMatch(endAt, @"\d{4}-\d{2}-\d{2}"))
+            else if (!Regex.IsMatch(startAt, @"\d{2}\.\d{2}\.\d{4}") || !Regex.IsMatch(endAt, @"\d{2}\.\d{2}\.\d{4}"))
             {
-                Error.Content = "Enter data fields with format (year)-(month)-(day)";
+                Error.Content = "Enter data fields with format (day).(month).(year)";
             }
             else
             {
                 try
                 {
-                    Event ev = new Event { Name = name, Description = description, StartAt = DateTime.ParseExact(startAt, "yyyy-mm-dd", CultureInfo.InvariantCulture), EntAt = DateTime.ParseExact(endAt, "yyyy-mm-dd", CultureInfo.InvariantCulture) };
+                    Event ev = new Event { Name = name, Description = description, StartAt = DateTime.ParseExact(startAt, "dd.mm.yyyy", CultureInfo.CurrentCulture), EntAt = DateTime.ParseExact(endAt, "dd.mm.yyyy", CultureInfo.CurrentCulture) };
                     Context con = new Context();
                     EventServiceImpl usev = new EventServiceImpl(con);
                     usev.Save(ev, this.user.Id);

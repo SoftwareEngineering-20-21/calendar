@@ -15,8 +15,8 @@
         <Label Content="Confirm password" HorizontalAlignment="Left" Margin="112,226,0,0" VerticalAlignment="Top"/>
         <TextBox  Name="userName" HorizontalAlignment="Left" Margin="280,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox  Name="email" HorizontalAlignment="Left" Margin="280,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="password" HorizontalAlignment="Left" Margin="280,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox  Name="confirmPassword" HorizontalAlignment="Left" Margin="280,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="password" HorizontalAlignment="Left" Margin="280,180,0,0" VerticalAlignment="Top" Width="120" PasswordChar="*"/>
+        <PasswordBox  Name="confirmPassword" HorizontalAlignment="Left" Margin="280,230,0,0" VerticalAlignment="Top" Width="120" PasswordChar="*"/>
         <Button Content="Back" HorizontalAlignment="Left" Margin="37,34,0,0" VerticalAlignment="Top" Click="Back_Click" FontSize="18"/>
         <Button Content="Register" HorizontalAlignment="Left" Margin="295,281,0,0" VerticalAlignment="Top" Height="31" Width="90" Click="Register_Click" FontSize="18"/>
 

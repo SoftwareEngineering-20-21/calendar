@@ -40,8 +40,8 @@ namespace Calendar
         {
             this.events.Name = Name.Text;
             this.events.Description = Descroption.Text;
-            this.events.StartAt = DateTime.ParseExact(StartAt.Text, "yyyy-mm-dd", CultureInfo.InvariantCulture);
-            this.events.EntAt = DateTime.ParseExact(EndAt.Text, "yyyy-mm-dd", CultureInfo.InvariantCulture);
+            this.events.StartAt = DateTime.ParseExact(StartAt.Text, "dd.mm.yyyy", CultureInfo.CurrentCulture);
+            this.events.EntAt = DateTime.ParseExact(EndAt.Text, "dd.mm.yyyy", CultureInfo.CurrentCulture);
 
             Context context = new Context();
             EventService eventService = new EventServiceImpl(context);
