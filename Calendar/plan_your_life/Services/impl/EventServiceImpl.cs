@@ -32,9 +32,12 @@ namespace Calendar.plan_your_life.Services.impl
             return _context.Events.ToList();
         }
 
-        public void DeleteById(long id)
+        public void DeleteById(long userId, long eventId)
         {
-            _context.Events.Remove(FindById(id));
+            UserEvent userEvent = _context.UserEvents.First(p => p.Event.Id == eventId && p.User.Id == userId);
+
+            _context.UserEvents.Remove(userEvent);
+            // _context.Events.Remove(userEvent.Event);
             _context.SaveChanges();
         }
 

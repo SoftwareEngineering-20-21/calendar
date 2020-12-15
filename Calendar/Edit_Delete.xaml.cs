@@ -42,7 +42,7 @@ namespace Calendar
             this.events.Description = Descroption.Text;
             this.events.StartAt = DateTime.ParseExact(StartAt.Text, "yyyy-mm-dd", CultureInfo.InvariantCulture);
             this.events.EntAt = DateTime.ParseExact(EndAt.Text, "yyyy-mm-dd", CultureInfo.InvariantCulture);
-            
+
             Context context = new Context();
             EventService eventService = new EventServiceImpl(context);
             eventService.Update(events);
@@ -58,7 +58,7 @@ namespace Calendar
         {
             Context context = new Context();
             EventService eventService = new EventServiceImpl(context);
-            eventService.DeleteById(events.Id);
+            eventService.DeleteById(user.Id, events.Id);
 
             EventPage eventPage = new EventPage(this.user);
             eventPage.Show();

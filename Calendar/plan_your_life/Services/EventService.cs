@@ -8,13 +8,13 @@ namespace Calendar.plan_your_life.Services
     {
         Event Save(Event e);
 
-        void Save(Event e,long userId);
+        void Save(Event e, long userId);
 
         Event FindById(long id);
 
         IEnumerable<Event> FindAll();
 
-        void DeleteById(long id);
+        void DeleteById(long userId, long eventId);
 
         Event Update(Event e);
 
