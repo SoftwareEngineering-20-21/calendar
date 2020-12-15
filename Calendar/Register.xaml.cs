@@ -37,18 +37,18 @@ namespace Calendar
             {
                 string userName = this.userName.Text;
                 string email = this.email.Text;
-                string password = this.password.Text;
+                string password = this.password.Password;
                 if (password.Length == 0)
                 {
                     errormessage.Text = "Enter password.";
                     this.password.Focus();
                 }
-                else if (this.confirmPassword.Text.Length == 0)
+                else if (this.confirmPassword.Password.Length == 0)
                 {
                     errormessage.Text = "Enter Confirm password.";
                     this.confirmPassword.Focus();
                 }
-                else if (password != confirmPassword.Text)
+                else if (password != confirmPassword.Password)
                 {
                     errormessage.Text = "Confirm password must be same as password.";
                     confirmPassword.Focus();

@@ -11,8 +11,8 @@
         <Button Content="Add" HorizontalAlignment="Center" Margin="0,374,0,0" VerticalAlignment="Top" Height="31" Width="90" Click="Add_Click" FontSize="18"/>
         <TextBox Name="Name" HorizontalAlignment="Center" Margin="0,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.696,0.53"/>
         <TextBox Name="Descroption" HorizontalAlignment="Center" Margin="0,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="StartAt" HorizontalAlignment="Center" Margin="0,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="EndAt" HorizontalAlignment="Center" Margin="0,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="StartAt" HorizontalAlignment="Center" Margin="0,259,0,0"  VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="EndAt" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="249,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.433,1.803"/>
         <Label Content="Description" HorizontalAlignment="Left" Margin="249,191,0,0" VerticalAlignment="Top"/>
         <Label Content="StartAt" HorizontalAlignment="Left" Margin="249,251,0,0" VerticalAlignment="Top"/>

@@ -30,7 +30,7 @@ namespace Calendar
                 email.Select(0, email.Text.Length);
                 email.Focus();
             }
-            else if (password.Text.Length == 0)
+            else if (password.Password.Length == 0)
             {
                 errormessage.Text = "Enter a password.";
                 password.Focus();
@@ -42,7 +42,7 @@ namespace Calendar
                     Context con = new Context();
                     var userService = new UserServiceImpl(con);
                     var user = userService.FindByEmail(this.email.Text);
-                    if (user.Password == this.password.Text)
+                    if (user.Password == this.password.Password)
                     {
                         EventPage eventPage = new EventPage(user);
                         eventPage.Show();
